@@ -1,0 +1,16 @@
+{
+  "extends": "airbnb-base",
+  "rules": {
+    "no-console": 0,
+    "no-alert": 0,
+    "no-unused-expressions": [2, {
+      "allowShortCircuit": true
+    }],
+    "no-underscore-dangle": 0
+  },
+  "globals": {
+    "$": true,
+    "window": true,
+    "document": true
+  }
+}
