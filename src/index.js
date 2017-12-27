@@ -129,7 +129,11 @@ function getToken(init) {
     log('Android APP，获取 token');
 
     try {
-      token = window.Crazy.getBZToken();
+      if (typeof window.Crazy !== 'undefined') {
+        token = window.Crazy.getBZToken();
+      } else {
+        token = window.bzinner.getBZToken();
+      }
     } catch (error) {
       log(`err: ${error}`);
     }
