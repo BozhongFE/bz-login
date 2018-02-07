@@ -2,7 +2,7 @@
 
 ### v0.2.0
 - 支持使用 `npm` 安装；
-```javascript
+```shell
 npm install github:BozhongFE/bz-login#v0.2.0
 ```
 - 引入 [object-assgin](https://www.npmjs.com/package/object-assign)；
