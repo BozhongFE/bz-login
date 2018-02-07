@@ -1,8 +1,9 @@
 {
   "name": "bz-login",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "播种网登录模块",
-  "main": "index.js",
+  "main": "dist/bz-login.umd.js",
+  "module": "dist/bz-login.esm.js",
   "scripts": {
     "build": "node ./build/build.js",
     "lint": "eslint ./src/index.js"
@@ -15,6 +16,15 @@
     "eslint-plugin-import": "^2.7.0",
     "rollup": "^0.48.2",
     "rollup-plugin-buble": "^0.15.0",
+    "rollup-plugin-commonjs": "^8.3.0",
+    "rollup-plugin-node-resolve": "^3.0.2",
     "uglify-js": "^3.0.28"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BozhongFE/bz-login.git"
+  },
+  "dependencies": {
+    "object-assign": "^4.1.1"
   }
 }

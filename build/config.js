@@ -1,6 +1,8 @@
 const path = require('path');
 const fs = require('fs');
 const buble = require('rollup-plugin-buble');
+const resolve = require('rollup-plugin-node-resolve');
+const commonjs = require('rollup-plugin-commonjs');
 const config = require('../package.json');
 
 const exists = fs.existsSync;
@@ -31,14 +33,40 @@ const builds = {
     input: 'src/index.js',
     format: 'umd',
     moduleName: name,
-    output: path.join(modulePath, name + '-debug.js')
+    output: path.join(modulePath, name + '-debug.js'),
+    plugins: [
+      resolve(),
+      commonjs()
+    ]
   },
   'prod': {
     input: 'src/index.js',
     format: 'umd',
     moduleName: name,
-    output: path.join(modulePath, name + '.js')
-  }
+    output: path.join(modulePath, name + '.js'),
+    plugins: [
+      resolve(),
+      commonjs()
+    ]
+  },
+  'prod-noDepend': {
+    input: 'src/index.js',
+    format: 'umd',
+    moduleName: name,
+    output: path.join(modulePath, name + '-nodep.js')
+  },
+  'dist-common': {
+    input: 'src/index.js',
+    format: 'umd',
+    moduleName: name,
+    output: path.join('dist/', name + '.umd.js')
+  },
+  'dist-esm': {
+    input: 'src/index.js',
+    format: 'es',
+    moduleName: name,
+    output: path.join('dist/', name + '.esm.js')
+  },
 };
 
 function getConfig(opts) {

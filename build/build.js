@@ -23,7 +23,7 @@ function build (builds) {
 }
 
 function buildEntry (config) {
-  const isProd = !/debug\.js$/.test(config.output.file);
+  const isProd = !/debug\.js$/.test(config.output.file) && !/(\w+\.){2}js$/.test(config.output.file);
   return rollup.rollup(config)
     .then(bundle => bundle.generate(config.output))
     .then(({ code }) => {
