@@ -96,6 +96,11 @@ function isIosApp() {
   return iosReg.test(ua());
 }
 
+function isWx() {
+  const wxReg = /micromessenger/i;
+  return wxReg.test(ua());
+}
+
 // 返回登录页面链接
 function webLoginLink(url) {
   const link = url || window.location.href;
@@ -230,5 +235,7 @@ export default {
   isApp,
   isAndroidApp,
   isIosApp,
+  isWx,
   getLink,
+  hasLogin,
 };

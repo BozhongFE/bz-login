@@ -7,6 +7,11 @@
 npm run build
 ```
 
+## 安装
+```shell
+npm install https://github.com/BozhongFE/bz-login#v0.2.1
+```
+
 ## 接口
 
 ### afterAllLogin(callback[, options])
@@ -47,6 +52,9 @@ bzLogin.afterAllLogin(function () {
 
 ### isIosApp()
 判断是否是播种网出品的 APP 的 iOS 版本
+
+### isWx()
+判断是否是微信内
 
 ### getLink(prefix[, productPrefix])
 
