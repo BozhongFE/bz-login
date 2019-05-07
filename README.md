@@ -56,6 +56,10 @@ bzLogin.afterAllLogin(function () {
 ### isWx()
 判断是否是微信内
 
+
+### hasLogin()
+通过 cookie 判断用户是否登录
+
 ### getLink(prefix[, productPrefix])
 
 根据访问页面链接，获取对应环境的子域名。
