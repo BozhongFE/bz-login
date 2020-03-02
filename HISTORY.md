@@ -12,3 +12,6 @@ npm install github:BozhongFE/bz-login#v0.2.0
 ### v0.2.1
 - 新增 `isWx` 函数
 - 更新库依赖
+
+### v0.3.0
+- 新增 `getToken` 函数

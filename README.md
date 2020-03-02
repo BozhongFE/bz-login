@@ -64,6 +64,9 @@ bzLogin.afterAllLogin(function () {
 
 根据访问页面链接，获取对应环境的子域名。
 
+### getToken()
+获取客户端 Token 值
+
 **Arguments**
 
 - `prefix` (string)：域名前缀

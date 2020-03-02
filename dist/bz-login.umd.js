@@ -13,7 +13,7 @@ var config = {
   options: {
     type: 1, // 账户系统类别，1：播种网帐号，2：灵灵帐号
     debug: false, // 是否开启 debug 模式
-    debugType: 1, // 1: console.log, 2: alert 
+    debugType: 1, // 1: console.log, 2: alert
   },
 };
 
@@ -153,7 +153,7 @@ function token2Cookie(token, callback) {
   });
 }
 
-function getToken(init) {
+function getAppToken(init) {
   var log = logger();
   var token;
 
@@ -190,6 +190,38 @@ function getToken(init) {
   }
 }
 
+function getToken(callback, options) {
+  setOptions(options);
+  var log = logger();
+  var token;
+  if (isAndroidApp()) {
+    log('Android APP，获取 token');
+    try {
+      if (typeof window.Crazy !== 'undefined') {
+        token = window.Crazy.getBZToken();
+      } else {
+        token = window.bzinner.getBZToken();
+      }
+    } catch (error) {
+      log(("err: " + error));
+    }
+    callback(token);
+  } else if (isIosApp()) {
+    log('IOS APP，获取 token');
+    try {
+      window.webkit.messageHandlers.getBZToken.postMessage(null);
+    } catch (error) {
+      log(("err: " + error));
+    }
+    window.getBZTokenResult = function fn(accessToken) {
+      log(("token: " + accessToken));
+      callback(accessToken);
+    };
+  } else {
+    callback('非客户端，获取不到token');
+  }
+}
+
 // 根据 cookie 判断是否已经登录
 function hasLogin() {
   var cookie = document.cookie;
@@ -217,7 +249,7 @@ function afterAllLogin(callback, options) {
     }
   } else {
     log('APP 内');
-    getToken(callback);
+    getAppToken(callback);
   }
 }
 
@@ -231,7 +263,7 @@ function afterAppLogin(callback, options) {
     typeof callback !== 'undefined' && callback();
   } else {
     log('APP 内');
-    getToken(callback);
+    getAppToken(callback);
   }
 }
 
@@ -244,6 +276,7 @@ var index = {
   isWx: isWx,
   getLink: getLink,
   hasLogin: hasLogin,
+  getToken: getToken,
 };
 
 return index;
