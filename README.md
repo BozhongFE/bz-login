@@ -22,7 +22,7 @@ npm install https://github.com/BozhongFE/bz-login#v0.2.1
 
 - `callback` (Function)：登录后的回调函数
 - `options` (Object)
-  - `type` (number)：APP 帐号系统类别，1 为播种网帐号系统，2 为灵灵帐号系统。**Default:** 1 
+  - `type` (number)：APP 帐号系统类别，1 为播种网帐号系统，2 为灵灵帐号系统、Flome、正念。**Default:** 1 
   - `debug` (boolean)：是否开启 debug 模式。**Default:** false
   - `debugType` (number)：debug 模式输出信息的方式，1 为 `console.log`， 2 为 `alert`。**Default:** 1
 
