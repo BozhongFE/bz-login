@@ -24,11 +24,14 @@ function getLink(prefix, productPrefix) {
 }
 
 const jsonp = (options, callback) => {
-  const opts = Object.assign({
-    params: {},
-    url: '',
-    prefix: 'callback',
-  }, options);
+  const opts = Object.assign(
+    {
+      params: {},
+      url: '',
+      prefix: 'callback',
+    },
+    options
+  );
 
   const callbackName = `jsonp_${Date.now()}`;
   const headEl = document.getElementsByTagName('head')[0];
@@ -58,7 +61,9 @@ const jsonp = (options, callback) => {
 };
 
 function setOptions(options) {
-  config.options = options ? Object.assign({}, config.options, options) : config.options;
+  config.options = options
+    ? Object.assign({}, config.options, options)
+    : config.options;
 }
 
 function getOptions() {
@@ -70,9 +75,13 @@ function logger() {
   let fn = () => {};
   if (opts.debug) {
     if (opts.debugType === 2) {
-      fn = (str) => { window.alert(str); };
+      fn = (str) => {
+        window.alert(str);
+      };
     } else {
-      fn = (str) => { console.log(str); };
+      fn = (str) => {
+        console.log(str);
+      };
     }
   }
   return fn;
@@ -132,19 +141,22 @@ function token2Cookie(token, callback) {
     tokenUrl = `${accountAPI}/restful/bozhong/tokentocookie.jsonp`;
   }
 
-  jsonp({
-    url: tokenUrl,
-    params: sendData,
-    prefix: '__c',
-  }, (data) => {
-    if (data.error_code === 0) {
-      log('换 cookie 成功，执行回调');
-      typeof callback !== 'undefined' && callback();
-    } else {
-      log(`换 cookie 失败，错误信息： ${data.error_message}`);
-      window.location.href = webLoginLink();
+  jsonp(
+    {
+      url: tokenUrl,
+      params: sendData,
+      prefix: '__c',
+    },
+    (data) => {
+      if (data.error_code === 0) {
+        log('换 cookie 成功，执行回调');
+        typeof callback !== 'undefined' && callback(data);
+      } else {
+        log(`换 cookie 失败，错误信息： ${data.error_message}`);
+        window.location.href = webLoginLink();
+      }
     }
-  });
+  );
 }
 
 function getAppToken(init) {
@@ -179,7 +191,8 @@ function getAppToken(init) {
       log(`token: ${accessToken}`);
       token2Cookie(accessToken, init);
     };
-  } else { // 非 APP 直接跳转 Web 登录
+  } else {
+    // 非 APP 直接跳转 Web 登录
     window.location.href = webLoginLink();
   }
 }

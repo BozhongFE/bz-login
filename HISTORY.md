@@ -15,3 +15,6 @@ npm install github:BozhongFE/bz-login#v0.2.0
 
 ### v0.3.0
 - 新增 `getToken` 函数
+
+### v0.3.1
+- 将tokentocookie接口的response传至callback函数
