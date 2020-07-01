@@ -197,17 +197,19 @@ function getAppToken(init) {
   }
 }
 
-function getToken(callback, options) {
+function getToken(callback, options, type) {
   setOptions(options);
   const log = logger();
   let token;
   if (isAndroidApp()) {
     log('Android APP，获取 token');
     try {
-      if (typeof window.Crazy !== 'undefined') {
+      if (typeof window.bzinner !== 'undefined') {
+        token = window.bzinner.getBZToken();
+      } else if (typeof window.Crazy !== 'undefined') {
         token = window.Crazy.getBZToken();
       } else {
-        token = window.bzinner.getBZToken();
+        token = window[type].getBZToken();
       }
     } catch (error) {
       log(`err: ${error}`);

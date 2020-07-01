@@ -18,3 +18,6 @@ npm install github:BozhongFE/bz-login#v0.2.0
 
 ### v0.3.1
 - 将tokentocookie接口的response传至callback函数
+
+### v0.3.2
+- `getToken` 函数添加参数[type]供外部传值并调整安卓判断顺序
