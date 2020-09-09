@@ -21,3 +21,6 @@ npm install github:BozhongFE/bz-login#v0.2.0
 
 ### v0.3.2
 - `getToken` 函数添加参数[type]供外部传值并调整安卓判断顺序
+
+### v0.4.0
+- 更名为 @bz/login
